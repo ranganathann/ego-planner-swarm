@@ -57,7 +57,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_srvs
   laser_geometry
   pose_utils
-  quadrotor_msgs
+  quadrotor_msgs_ep
 )
 
 ## System dependencies are found with CMake's conventions
@@ -136,7 +136,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES irobot_msgs
-   CATKIN_DEPENDS geometry_msgs nav_msgs quadrotor_msgs
+   CATKIN_DEPENDS geometry_msgs nav_msgs quadrotor_msgs_ep
 #  DEPENDS system_lib
 )
 

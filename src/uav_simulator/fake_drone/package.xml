@@ -51,13 +51,13 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>nav_msgs</build_depend>
-  <build_depend>quadrotor_msgs</build_depend>
+  <build_depend>quadrotor_msgs_ep</build_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>nav_msgs</build_export_depend>
-  <build_export_depend>quadrotor_msgs</build_export_depend>
+  <build_export_depend>quadrotor_msgs_ep</build_export_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
-  <exec_depend>quadrotor_msgs</exec_depend>
+  <exec_depend>quadrotor_msgs_ep</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

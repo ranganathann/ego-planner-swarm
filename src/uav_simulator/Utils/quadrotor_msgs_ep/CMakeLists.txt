@@ -41,7 +41,7 @@
 
 #------------------------------------------------------------------
 cmake_minimum_required(VERSION 2.8.3)
-project(quadrotor_msgs)
+project(quadrotor_msgs_ep)
 
 find_package(catkin REQUIRED COMPONENTS
   #armadillo
@@ -94,9 +94,9 @@ catkin_package(
 add_library(decode_msgs src/decode_msgs.cpp)
 add_library(encode_msgs src/encode_msgs.cpp)
 
-# add_dependencies(test_exe quadrotor_msgs_generate_messages_cpp)
-add_dependencies(encode_msgs quadrotor_msgs_generate_messages_cpp)
-add_dependencies(decode_msgs quadrotor_msgs_generate_messages_cpp)
+# add_dependencies(test_exe quadrotor_msgs_ep_generate_messages_cpp)
+add_dependencies(encode_msgs quadrotor_msgs_ep_generate_messages_cpp)
+add_dependencies(decode_msgs quadrotor_msgs_ep_generate_messages_cpp)
 
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})

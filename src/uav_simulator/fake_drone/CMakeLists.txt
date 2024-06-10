@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   nav_msgs
-  quadrotor_msgs
+  quadrotor_msgs_ep
 )
 find_package(Eigen3 REQUIRED)
 

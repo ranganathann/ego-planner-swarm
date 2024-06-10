@@ -49,7 +49,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   nav_msgs
   visualization_msgs
-  quadrotor_msgs
+  quadrotor_msgs_ep
   tf
   pose_utils
 )

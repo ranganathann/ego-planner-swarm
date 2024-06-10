@@ -53,7 +53,7 @@ void GridMap::initMap(ros::NodeHandle &nh)
 
   node_.param("grid_map/odom_depth_timeout", mp_.odom_depth_timeout_, 1.0);
 
-  if( mp_.virtual_ceil_height_ - mp_.ground_height_ > z_size)
+  if (mp_.virtual_ceil_height_ - mp_.ground_height_ > z_size)
   {
     mp_.virtual_ceil_height_ = mp_.ground_height_ + z_size;
   }
@@ -107,7 +107,7 @@ void GridMap::initMap(ros::NodeHandle &nh)
 
   depth_sub_.reset(new message_filters::Subscriber<sensor_msgs::Image>(node_, "grid_map/depth", 50));
   extrinsic_sub_ = node_.subscribe<nav_msgs::Odometry>(
-      "/vins_estimator/extrinsic", 10, &GridMap::extrinsicCallback, this); //sub
+      "/vins_estimator/extrinsic", 10, &GridMap::extrinsicCallback, this); // sub
 
   if (mp_.pose_type_ == POSE_STAMPED)
   {
@@ -229,11 +229,11 @@ void GridMap::projectDepthImage()
 
   if (!mp_.use_depth_filter_)
   {
-    for (int v = 0; v < rows; v+=skip_pix)
+    for (int v = 0; v < rows; v += skip_pix)
     {
       row_ptr = md_.depth_image_.ptr<uint16_t>(v);
 
-      for (int u = 0; u < cols; u+=skip_pix)
+      for (int u = 0; u < cols; u += skip_pix)
       {
 
         Eigen::Vector3d proj_pt;
@@ -644,10 +644,12 @@ void GridMap::clearAndInflateLocalMap()
       }
 
   // add virtual ceiling to limit flight height
-  if (mp_.virtual_ceil_height_ > -0.5) {
+  if (mp_.virtual_ceil_height_ > -0.5)
+  {
     int ceil_id = floor((mp_.virtual_ceil_height_ - mp_.map_origin_(2)) * mp_.resolution_inv_) - 1;
     for (int x = md_.local_bound_min_(0); x <= md_.local_bound_max_(0); ++x)
-      for (int y = md_.local_bound_min_(1); y <= md_.local_bound_max_(1); ++y) {
+      for (int y = md_.local_bound_min_(1); y <= md_.local_bound_max_(1); ++y)
+      {
         md_.occupancy_buffer_inflate_[toAddress(x, y, ceil_id)] = 1;
       }
   }
@@ -662,14 +664,15 @@ void GridMap::visCallback(const ros::TimerEvent & /*event*/)
 
 void GridMap::updateOccupancyCallback(const ros::TimerEvent & /*event*/)
 {
-  if (md_.last_occ_update_time_.toSec() < 1.0 ) md_.last_occ_update_time_ = ros::Time::now();
-  
+  if (md_.last_occ_update_time_.toSec() < 1.0)
+    md_.last_occ_update_time_ = ros::Time::now();
+
   if (!md_.occ_need_update_)
   {
-    if ( md_.flag_use_depth_fusion && (ros::Time::now() - md_.last_occ_update_time_).toSec() > mp_.odom_depth_timeout_ )
+    if (md_.flag_use_depth_fusion && (ros::Time::now() - md_.last_occ_update_time_).toSec() > mp_.odom_depth_timeout_)
     {
-      ROS_ERROR("odom or depth lost! ros::Time::now()=%f, md_.last_occ_update_time_=%f, mp_.odom_depth_timeout_=%f", 
-        ros::Time::now().toSec(), md_.last_occ_update_time_.toSec(), mp_.odom_depth_timeout_);
+      ROS_ERROR("odom or depth lost! ros::Time::now()=%f, md_.last_occ_update_time_=%f, mp_.odom_depth_timeout_=%f",
+                ros::Time::now().toSec(), md_.last_occ_update_time_.toSec(), mp_.odom_depth_timeout_);
       md_.flag_depth_odom_timeout_ = true;
     }
     return;
@@ -851,10 +854,12 @@ void GridMap::cloudCallback(const sensor_msgs::PointCloud2ConstPtr &img)
   boundIndex(md_.local_bound_max_);
 
   // add virtual ceiling to limit flight height
-  if (mp_.virtual_ceil_height_ > -0.5) {
+  if (mp_.virtual_ceil_height_ > -0.5)
+  {
     int ceil_id = floor((mp_.virtual_ceil_height_ - mp_.map_origin_(2)) * mp_.resolution_inv_) - 1;
     for (int x = md_.local_bound_min_(0); x <= md_.local_bound_max_(0); ++x)
-      for (int y = md_.local_bound_min_(1); y <= md_.local_bound_max_(1); ++y) {
+      for (int y = md_.local_bound_min_(1); y <= md_.local_bound_max_(1); ++y)
+      {
         md_.occupancy_buffer_inflate_[toAddress(x, y, ceil_id)] = 1;
       }
   }

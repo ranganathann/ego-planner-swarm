@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  quadrotor_msgs
+  quadrotor_msgs_ep
   uav_utils
   cmake_utils
 )
@@ -29,7 +29,7 @@ include_directories(${ARMADILLO_INCLUDE_DIRS})
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES irobot_msgs
-  CATKIN_DEPENDS roscpp quadrotor_msgs uav_utils
+  CATKIN_DEPENDS roscpp quadrotor_msgs_ep uav_utils
   DEPENDS Eigen3 system_lib
 )
 

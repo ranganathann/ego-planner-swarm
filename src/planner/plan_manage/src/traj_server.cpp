@@ -1,14 +1,14 @@
 #include "bspline_opt/uniform_bspline.h"
 #include "nav_msgs/Odometry.h"
 #include "traj_utils/Bspline.h"
-#include "quadrotor_msgs/PositionCommand.h"
+#include "quadrotor_msgs_ep/PositionCommand.h"
 #include "std_msgs/Empty.h"
 #include "visualization_msgs/Marker.h"
 #include <ros/ros.h>
 
 ros::Publisher pos_cmd_pub;
 
-quadrotor_msgs::PositionCommand cmd;
+quadrotor_msgs_ep::PositionCommand cmd;
 double pos_gain[3] = {0, 0, 0};
 double vel_gain[3] = {0, 0, 0};
 
@@ -53,7 +53,7 @@ void bsplineCallback(traj_utils::BsplineConstPtr msg)
   //   yaw_pts(i, 0) = msg->yaw_pts[i];
   // }
 
-  //UniformBspline yaw_traj(yaw_pts, msg->order, msg->yaw_dt);
+  // UniformBspline yaw_traj(yaw_pts, msg->order, msg->yaw_dt);
 
   start_time_ = msg->start_time;
   traj_id_ = msg->traj_id;
@@ -206,7 +206,7 @@ void cmdCallback(const ros::TimerEvent &e)
 
   cmd.header.stamp = time_now;
   cmd.header.frame_id = "world";
-  cmd.trajectory_flag = quadrotor_msgs::PositionCommand::TRAJECTORY_STATUS_READY;
+  cmd.trajectory_flag = quadrotor_msgs_ep::PositionCommand::TRAJECTORY_STATUS_READY;
   cmd.trajectory_id = traj_id_;
 
   cmd.position.x = pos(0);
@@ -237,7 +237,7 @@ int main(int argc, char **argv)
 
   ros::Subscriber bspline_sub = nh.subscribe("planning/bspline", 10, bsplineCallback);
 
-  pos_cmd_pub = nh.advertise<quadrotor_msgs::PositionCommand>("/position_cmd", 50);
+  pos_cmd_pub = nh.advertise<quadrotor_msgs_ep::PositionCommand>("/position_cmd", 50);
 
   ros::Timer cmd_timer = nh.createTimer(ros::Duration(0.01), cmdCallback);
 

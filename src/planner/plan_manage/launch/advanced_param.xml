@@ -17,27 +17,8 @@
   <arg name="max_acc"/>
   <arg name="planning_horizon"/>
 
-  <arg name="point_num"/>
-  <arg name="point0_x"/>
-  <arg name="point0_y"/>
-  <arg name="point0_z"/>
-  <arg name="point1_x"/>
-  <arg name="point1_y"/>
-  <arg name="point1_z"/>
-  <arg name="point2_x"/>
-  <arg name="point2_y"/>
-  <arg name="point2_z"/>
-  <arg name="point3_x"/>
-  <arg name="point3_y"/>
-  <arg name="point3_z"/>
-  <arg name="point4_x"/>
-  <arg name="point4_y"/>
-  <arg name="point4_z"/>
-
   <arg name="flight_type"/>
   <arg name="use_distinctive_trajs"/>
-
-  <arg name="obj_num_set"/>
 
   <arg name="drone_id"/>
 
