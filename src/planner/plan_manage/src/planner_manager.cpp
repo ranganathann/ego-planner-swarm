@@ -52,9 +52,9 @@ namespace ego_planner
   {
     static int count = 0;
     printf("\033[47;30m\n[drone %d replan %d]==============================================\033[0m\n", pp_.drone_id, count++);
-    // cout.precision(3);
-    // cout << "start: " << start_pt.transpose() << ", " << start_vel.transpose() << "\ngoal:" << local_target_pt.transpose() << ", " << local_target_vel.transpose()
-    //      << endl;
+    cout.precision(3);
+    cout << "start: " << start_pt.transpose() << ", " << start_vel.transpose() << "\ngoal:" << local_target_pt.transpose() << ", " << local_target_vel.transpose()
+         << endl;
 
     if ((start_pt - local_target_pt).norm() < 0.2)
     {
@@ -272,7 +272,7 @@ namespace ego_planner
     {
       flag_step_1_success = bspline_optimizer_->BsplineOptimizeTrajRebound(ctrl_pts, ts);
       t_opt = ros::Time::now() - t_start;
-      //static int vis_id = 0;
+      // static int vis_id = 0;
       visualization_->displayInitPathList(point_set, 0.2, 0);
     }
 

@@ -103,6 +103,11 @@ void GridMap::initMap(ros::NodeHandle &nh)
       0.0, -1.0, 0.0, 0.0,
       0.0, 0.0, 0.0, 1.0;
 
+  // md_.cam2body_ << 1.0, 0.0, 0.0, 0.0,
+  //     0.0, 1.0, 0.0, 0.0,
+  //     0.0, 0.0, 1.0, 0.0,
+  //     0.0, 0.0, 0.0, 1.0;
+
   /* init callback */
 
   depth_sub_.reset(new message_filters::Subscriber<sensor_msgs::Image>(node_, "grid_map/depth", 50));
@@ -981,6 +986,7 @@ void GridMap::getRegion(Eigen::Vector3d &ori, Eigen::Vector3d &size)
 
 void GridMap::extrinsicCallback(const nav_msgs::OdometryConstPtr &odom)
 {
+  std::cout << "extrinsic callback" << std::endl;
   Eigen::Quaterniond cam2body_q = Eigen::Quaterniond(odom->pose.pose.orientation.w,
                                                      odom->pose.pose.orientation.x,
                                                      odom->pose.pose.orientation.y,

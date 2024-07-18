@@ -189,7 +189,8 @@ namespace ego_planner
           ros::spinOnce();
           ros::Duration(0.001).sleep();
         }
-        changeFSMExecState(REPLAN_TRAJ, "TRIG");
+        // changeFSMExecState(REPLAN_TRAJ, "TRIG");
+        changeFSMExecState(GEN_NEW_TRAJ, "TRIG");
       }
 
       // visualization_->displayGoalPoint(end_pt_, Eigen::Vector4d(1, 0, 0, 1), 0.3, 0);
